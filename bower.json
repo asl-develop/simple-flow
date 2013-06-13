@@ -1,0 +1,17 @@
+{
+   "lib": {
+    "name": "simple-flow",
+    "version": "0.0.1",
+    "dependencies": {      
+    }    
+  },
+  "vendor": {
+    "name": "simple-flow",
+    "version": "0.0.1",
+    "dependencies": {
+      "jquery": "latest",
+      "underscore": "latest",
+      "backbone": "latest"
+    }
+  }
+}
