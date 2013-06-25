@@ -14,5 +14,46 @@
 
 
 
-
 @import 'bootstrap';
+
+div.head-contents{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+div.main-contents{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+.task-field{
+  width: 300px;
+}
+
+
+/* 表：一覧表示、詳細表示 */
+@mixin data-table {
+  font-size: 90%;
+  width: 100%;
+  
+  th {
+    background-color: #499;
+    color: white;
+    font-weight: normal;
+  }
+  td, th {
+    padding: 4px;
+  }
+  td {
+    background-color: #cee;
+  }
+}
+
+table.list {
+  @include data-table;
+  th { text-align: left; }
+}
+

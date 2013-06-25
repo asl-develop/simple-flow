@@ -1,0 +1,50 @@
+<%= form_for @task do |f| %>
+
+  <% if @task.persisted? %>
+    <p>作成者:
+      <%= @task.author.name %>
+    </p>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :flow, "承認ルート:" %>
+    <%= f.text_field :flow, class: "task-field" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :title, "タイトル:" %>
+    <%= f.text_field :title, class: "task-field" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :content, "内容:" %>
+    <%= f.text_area :content, rows:"10", class: "task-field" %>
+  </div>
+  
+  
+  <div class="field">
+  <%= f.label :charge_user, "次の担当者:" %>
+  <%= f.select :charge_user_id, @users.map{|user| [user.name, user.id]} %>
+  <!--
+  <%= f.collection_select :charge_user, @users, :id, :name %>
+  -->
+  </div>
+  
+  <% if @task.persisted? %>
+    <div class="actions">
+      <%= f.submit "保存", class: "btn " %>
+      <%= f.submit "申請" , confirm: "申請しますか？", class: "btn " %>
+      <%= f.submit "承認" , confirm: "承認しますか？", class: "btn " %>
+      <%= f.submit "完了" , confirm: "完了しますか？", class: "btn " %>
+      <%= f.submit "差戻し" , confirm: "差戻ししますか？", class: "btn " %>
+      <%= f.submit "取消し" , confirm: "取消ししますか？", class: "btn " %>
+      <%= f.submit "削除" , confirm: "削除しますか？", class: "btn " %>
+    </div>
+  <% else %>  
+    <div class="actions">
+      <%= f.submit "保存", class: "btn " %>
+      <%= f.submit "申請" , confirm: "申請しますか？", class: "btn " %>
+    </div>  
+  <% end %>
+
+<% end %>

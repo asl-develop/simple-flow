@@ -8,7 +8,12 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="navbar navbar-inverse">
+    <%= render "shared/header"%>
+  </div>
+  <div class="main-contents">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

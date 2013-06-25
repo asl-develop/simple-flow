@@ -11,21 +11,17 @@
     </div>
   <% end %>
 
+
+  <%= f.label :login_id %>
+  <%= f.text_field :login_id %>
+
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name_kana %><br />
-    <%= f.text_field :first_name_kana %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name_kana_string %><br />
-    <%= f.text_field :last_name_kana_string %>
+    <%= f.label :name_kana %><br />
+    <%= f.text_field :name_kana %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
