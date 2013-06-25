@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :name, :name_kana, :password_digest, :login_id
 
-# TODO 指定ユーザー以外
-#  scope :exclude, ->(user){ where(user_id: user.id)}
-
-
+  scope :exclude, ->(user){
+      users = User.arel_table
+      where( users[:id].not_in(user.id))
+      }
 
 
   class << self
