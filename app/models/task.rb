@@ -110,4 +110,15 @@ class Task < ActiveRecord::Base
     @task_log.save!
   end
 
+  def delete!(current_user, params)
+    self.update_attributes!(params[:task])
+    self.state = Task::STATUS_DELETED
+    self.locked = 1;
+    self.save!
+    @task_log = TaskLog.new( user_id: current_user.id,
+                          task_id: self.id,
+                          action: TaskLog::ACTION_DELETE )
+    @task_log.save!
+  end
+
 end
