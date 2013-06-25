@@ -21,12 +21,12 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @users = User.all
+    @users = User.exclude(@current_user)
   end
   
   def edit
     @task = Task.includes(:author).find(params[:id])
-    @users = User.all
+    @users = User.exclude(@current_user)
   end
 
   def create
@@ -85,8 +85,9 @@ class TasksController < ApplicationController
       when Task::BUTTON_RETURN
         @task.return!(@current_user, params)
         
-      # TODO 削除
-
+      # 削除
+      when Task::BUTTON_DELETE
+        @task.delete!(@current_user, params)
      
       else
         # ?
