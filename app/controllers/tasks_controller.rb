@@ -9,6 +9,8 @@ class TasksController < ApplicationController
       @tasks = Task.includes(:author).related_to(@current_user)
     when "creating"
       @tasks = Task.includes(:author).creating(@current_user).available
+    when "applying"
+      @tasks = Task.includes(:author).created_by(@current_user).outside_charge(@current_user).available
     else
       @tasks = Task.includes(:author).charge_of(@current_user).available
     end

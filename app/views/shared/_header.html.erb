@@ -1,5 +1,13 @@
 <div class="navbar-inner ">
   <a class="brand" href="/">Simple Workflow</a>
+
+  <ul class="nav">
+    <li class="divider-vertical"><%= link_to '担当文書', :controller =>'tasks', :action =>"index", :scope => 'charging' %></li>
+    <li class="divider-vertical"><%= link_to '作成中文書', :controller =>'tasks', :action =>"index", :scope => 'creating' %></li>
+    <li class="divider-vertical"><%= link_to '申請中文書', :controller =>'tasks', :action =>"index", :scope => 'applying' %></li>
+    <li class="divider-vertical"><%= link_to '関連文書', :controller =>'tasks', :action =>"index", :scope => 'relation' %></li>
+  </ul>
+
 </div>
 
 
@@ -9,12 +17,16 @@
       <%= @current_user.name %>でログイン中 | <%= link_to 'ログアウト', :session, method: :delete, :confirm => "ログアウトしますか？" %>
     <% end %>
   </div>
-  
+
+<!--  
   <div> / 
-    <%= link_to '担当文書一覧', :controller =>'tasks', :action =>"index", :scope => 'charging' %> / 
-    <%= link_to '作成中書一覧', :controller =>'tasks', :action =>"index", :scope => 'creating' %> / 
-    <%= link_to '関連文書一覧', :controller =>'tasks', :action =>"index", :scope => 'relation' %> / 
+    <%= link_to '担当文書', :controller =>'tasks', :action =>"index", :scope => 'charging' %> / 
+    <%= link_to '作成中文書', :controller =>'tasks', :action =>"index", :scope => 'creating' %> / 
+    <%= link_to '申請中文書', :controller =>'tasks', :action =>"index", :scope => 'applying' %> / 
+    <%= link_to '関連文書', :controller =>'tasks', :action =>"index", :scope => 'relation' %> / 
   
   </div>
+-->
+
 </div>
 
