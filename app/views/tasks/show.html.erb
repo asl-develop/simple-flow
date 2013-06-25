@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <% if @task.charge_user == @current_user %>
+    <%= link_to '編集', edit_task_path(@task) %>
+  <% end %>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+    <th>承認ルート</th>
+    <td><%= @task.flow %></td>
+  </tr>
+  <tr>
+    <th class="span2">タイトル</th>
+    <td><%= @task.title %></td>
+  </tr>
+  <tr>
+    <th>作成日</th>
+    <td><%= yymmddhhmm_ja(@task.created_at) %></td>
+  </tr>
+  <tr>
+    <th>作成者</th>
+    <td><%= @task.author.name %></td>
+  </tr>
+  <tr>
+    <th>状態</th>
+    <td><%= Task::STATUS_TEXT_OF(@task.state) %></td>
+  </tr>
+  <tr>
+    <th>担当者</th>
+    <td><%= @task.charge_user.name %></td>
+  </tr>
+  <tr>
+    <th>内容</th>
+    <td><%= simple_format @task.content %></td>
+  </tr>
+</table>
+
+
+<div>
+  <b>履歴:</b><br />
+  <% @task_logs.each do |task_log| %>
+    → 
+    <%= task_log.user.name %>
+    <%= TaskLog::ACTION_TEXT_OF(task_log.action) %><br />
+  
+  <% end %>
+</div>
+
+
+
+

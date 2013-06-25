@@ -2,10 +2,8 @@
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>First name kana</th>
-    <th>Last name kana string</th>
+    <th>name</th>
+    <th>kana string</th>
     <th>Email</th>
     <th>Password digest</th>
     <th></th>
@@ -15,10 +13,8 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.first_name_kana %></td>
-    <td><%= user.last_name_kana_string %></td>
+    <td><%= user.name %></td>
+    <td><%= user.name_kana %></td>
     <td><%= user.email %></td>
     <td><%= user.password_digest %></td>
     <td><%= link_to 'Show', user %></td>

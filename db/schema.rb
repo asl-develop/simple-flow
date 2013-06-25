@@ -11,17 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612121314) do
+ActiveRecord::Schema.define(:version => 20130620001924) do
+
+  create_table "task_logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.integer  "action"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "task_logs", ["task_id"], :name => "index_task_logs_on_task_id"
+  add_index "task_logs", ["user_id"], :name => "index_task_logs_on_user_id"
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "charge_user_id"
+    t.integer  "state"
+    t.integer  "locked",         :default => 0
+    t.string   "flow"
+    t.integer  "author_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "first_name_kana"
-    t.string   "last_name_kana_string"
+    t.string   "name"
+    t.string   "name_kana"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "login_id"
   end
 
 end

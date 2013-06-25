@@ -1,0 +1,23 @@
+<div>
+  申請書類：<%= link_to '文書作成', new_task_path , class:"btn"%>
+</div>
+<br />
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>タイトル</th>
+    <th>作成日</th>
+    <th>作成者</th>
+    <th>状態</th>
+    <th>現在の担当者</th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= link_to task.title, task %></td>
+    <td><%= yymmddhhmm_ja(task.created_at) %></td>
+    <td><%= task.author.name %></td>
+    <td><%= Task::STATUS_TEXT_OF(task.state) %></td>
+    <td><%= task.charge_user.name %></td>
+  </tr>
+<% end %>
+</table>
