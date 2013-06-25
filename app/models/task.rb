@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   scope :available, ->{ where(locked: 0)}
   scope :charge_of, ->(user){ where(charge_user_id: user.id)}
   scope :creating, ->(user){ where(state: STATUS_CREATING, author_id: user.id)}
+  scope :created_by, ->(user){ where(author_id: user.id)}
   scope :related_to, ->(user){
       tasks = Task.arel_table
       task_logs = TaskLog.arel_table
@@ -17,13 +18,18 @@ class Task < ActiveRecord::Base
         TaskLog.by(user).where(
           task_logs[:task_id].eq(tasks[:id])).exists)
       }
-  
 
-  STATUS_CREATING = 0 # 作成中
-  STATUS_PROCESSING = 1 # 処理中
-  STATUS_SENDING_BACK = 2 # 差戻し中
-  STATUS_DELETED = 8 # 削除済み
-  STATUS_COMPLETED = 9 # 完了
+  scope :outside_charge, ->(user){
+      tasks = Task.arel_table
+      where( tasks[:charge_user_id].not_in(user.id))
+      }
+
+
+  STATUS_CREATING = 0         # 作成中
+  STATUS_PROCESSING = 1       # 処理中
+  STATUS_SENDING_BACK = 2     # 差戻し中
+  STATUS_DELETED = 8          # 削除済み
+  STATUS_COMPLETED = 9        # 完了
 
   BUTTON_CONSERVE = "保存"
   BUTTON_APPLY = "申請"
@@ -45,11 +51,9 @@ class Task < ActiveRecord::Base
 
   # create時のメソッド群
   def create_conserve!
-    ActiveRecord::Base.transaction do
     self.charge_user = self.author
     self.state = Task::STATUS_CREATING
     self.save!
-    end
   end
 
   def create_apply!
@@ -65,7 +69,7 @@ class Task < ActiveRecord::Base
   # update時のメソッド群
   def conserve!(current_user, params)
     self.update_attributes!(params[:task])
-    self.charge_user = @current_user
+    self.charge_user = current_user
     self.save!
   end
 

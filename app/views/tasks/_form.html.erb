@@ -27,26 +27,26 @@
   <%= f.select :charge_user_id, @users.map{|user| [user.name, user.id]} %>
   </div>
 
-<!-- TODO ヘルパーかデコレータでやるべき？ -->  
+<!-- ヘルパーかデコレータでやるべきなのか？ -->  
   <% if @task.persisted? %>
     <% if @task.author == @current_user %>
       <div class="actions">
-        <%= f.submit "保存", class: "btn " %>
-        <%= f.submit "申請" , confirm: "申請しますか？", class: "btn " %>
-        <%= f.submit "削除" , confirm: "削除しますか？", class: "btn " %>
+        <%= f.submit Task::BUTTON_CONSERVE, class: "btn " %>
+        <%= f.submit Task::BUTTON_APPLY , confirm: "申請しますか？", class: "btn " %>
+        <%= f.submit Task::BUTTON_DELETE , confirm: "削除しますか？", class: "btn " %>
       </div>
     <% else %>
       <div class="actions">
-        <%= f.submit "保存", class: "btn " %>
-        <%= f.submit "承認" , confirm: "承認しますか？", class: "btn " %>
-        <%= f.submit "完了" , confirm: "完了しますか？", class: "btn " %>
-        <%= f.submit "差戻し" , confirm: "差戻ししますか？", class: "btn " %>
+        <%= f.submit Task::BUTTON_CONSERVE, class: "btn " %>
+        <%= f.submit Task::BUTTON_APPROVE , confirm: "承認しますか？", class: "btn " %>
+        <%= f.submit Task::BUTTON_COMPLETE , confirm: "完了しますか？", class: "btn " %>
+        <%= f.submit Task::BUTTON_RETURN , confirm: "差戻ししますか？", class: "btn " %>
       </div>
     <% end %>
   <% else %>  
     <div class="actions">
-      <%= f.submit "保存", class: "btn " %>
-      <%= f.submit "申請" , confirm: "申請しますか？", class: "btn " %>
+      <%= f.submit Task::BUTTON_CONSERVE, class: "btn " %>
+      <%= f.submit Task::BUTTON_APPLY , confirm: "申請しますか？", class: "btn " %>
     </div>  
   <% end %>
 <% end %>
