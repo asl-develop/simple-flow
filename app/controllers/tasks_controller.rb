@@ -87,8 +87,7 @@ class TasksController < ApplicationController
         
       # TODO 削除
 
-      # TODO 取消し
-      
+     
       else
         # ?
       end

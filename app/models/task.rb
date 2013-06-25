@@ -30,7 +30,6 @@ class Task < ActiveRecord::Base
   BUTTON_DELETE = "削除"
   BUTTON_APPROVE = "承認"
   BUTTON_COMPLETE = "完了"
-  BUTTON_REVOKE = "取消し"
   BUTTON_RETURN = "差戻し"
   
   class << self

@@ -25,9 +25,6 @@
   <div class="field">
   <%= f.label :charge_user, "次の担当者:" %>
   <%= f.select :charge_user_id, @users.map{|user| [user.name, user.id]} %>
-  <!--
-  <%= f.collection_select :charge_user, @users, :id, :name %>
-  -->
   </div>
   
   <% if @task.persisted? %>

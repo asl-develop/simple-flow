@@ -6,7 +6,7 @@
 <div class="head-contents">
   <div align="right">
     <% if @current_user %>
-      <%= @current_user.name %>でログイン中 | <%= link_to 'ログアウト', :session, method: :delete %>
+      <%= @current_user.name %>でログイン中 | <%= link_to 'ログアウト', :session, method: :delete, :confirm => "ログアウトしますか？" %>
     <% end %>
   </div>
   
